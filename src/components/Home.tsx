@@ -22,12 +22,9 @@ const Home = (props: any) => {
 
   let itemList = props.items.map((item: any) => {
     return (
-      <Stack spacing={4} direction="row" justify="">
-        <Box
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
+      <Stack wrap='wrap'>
+        <Box 
+        display='flex'  p={2} wrap='wrap' flexDirection='column'alignItems='center'
           key={item.id}
         >
           <Box>
@@ -38,11 +35,12 @@ const Home = (props: any) => {
             fontWeight="semibold"
             as="h4"
             lineHeight="tight"
-            isTruncated
           >
             Title: {item.title}
           </Box>
-          <Stack spacing={15} direction="row" justify="center">
+          <Stack spacing={10} direction="row" 
+          align="center"
+          >
             <Button colorScheme="teal" size="xs">
               Fave
             </Button>
