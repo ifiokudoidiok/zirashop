@@ -22,7 +22,7 @@ const Cart = (props: any) => {
     props.subtractQuantity(id);
   };
 
-  let addedItems = props.items.length ? (
+  let addedItems: any = props.items.length ? (
     props.items.map((item: any) => {
       return (
         <li className="collection-item avatar" key={item.id}>
