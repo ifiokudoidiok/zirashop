@@ -1,4 +1,5 @@
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/action-types/cart-actions';
+import { ADD_TO_FAVE, REMOVE_FAVE} from '../actions/action-types/fave-actions';
 import brogues from "./../../images/brogues.jpg";
 import trainers from "./../../images/trainers.jpg";
 import sneakers from "./../../images/sneakers.jpg";
@@ -9,15 +10,16 @@ import boots from "./../../images/boots.jpg";
 
 const initState = {
     items: [
-        {id:1,title:'Brown Brogues', desc: "A pair of Brown Brogues.", price:110,img:brogues},
-        {id:2,title:'Adidas', desc: "A pair of Adidas sneakers", price:80,img: sneakers},
-        {id:3,title:'Trainers', desc: "A pair of Blue Trainers.",price:120,img: trainers},
-        {id:4,title:'Red Heels', desc: "A pair of Red heels", price:260,img:heels},
-        {id:5,title:'Cropped-sho', desc: "A pair of Nike Airforce", price:160,img: nike},
-        {id:6,title:'Boots', desc: "A pair of Black Boots",price:90,img: boots}
-    ],
+        {id:1,title:'Brown Brogues', desc: "A pair of Brown Brogues.", price:110,img:brogues, fave: false},
+        {id:2,title:'Adidas', desc: "A pair of Adidas sneakers", price:80,img: sneakers, fave: true},
+        {id:3,title:'Trainers', desc: "A pair of Blue Trainers.",price:120,img: trainers, fave: false},
+        {id:4,title:'Red Heels', desc: "A pair of Red heels", price:260,img:heels, fave: false},
+        {id:5,title:'Cropped-sho', desc: "A pair of Nike Airforce", price:160,img: nike, fave: true},
+        {id:6,title:'Boots', desc: "A pair of Black Boots",price:90,img: boots, fave: true}
+    ], 
 
     addedItems: [] as Array<any>[],
+    faveItems: [] as Array<any>[],
     total: 0
 
 }
@@ -61,6 +63,32 @@ if(action.type === REMOVE_ITEM){
       total: newTotal
   }
 }
+
+if(action.type === ADD_TO_FAVE) {
+    let faveItem: any = state.items.find((item: any) => item.id ===action.id)
+    let existed_item: any = state.faveItems.find((item: any)=> action.id === item.id)
+    if(existed_item.fave){
+        return{
+            ...state, 
+        }
+    }
+    else {
+        return{
+            ...state, 
+            faveItems: [...state.faveItems, faveItem]
+        }
+    }
+}
+
+if(action.type === REMOVE_FAVE) {
+    // let faveItemToRemove = state.faveItems.find(item => item.id ===action.id)
+    let new_items: any = state.faveItems.filter((item: any)=> action.id !== item.id)
+    return{
+        ...state,
+        faveItems: new_items
+    }
+}
+
 //INSIDE CART COMPONENT
 if(action.type=== ADD_QUANTITY){
   let addedItem: any = state.items.find(item=> item.id === action.id)
