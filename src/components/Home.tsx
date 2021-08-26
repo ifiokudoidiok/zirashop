@@ -12,14 +12,6 @@ const Home = (props: any) => {
   const [list, setList] = useState([]);
   const [isFave, setIsFave] = useState(false);
 
-  useEffect(() => {
-    fetch("https://www.heimkaup.is/api/v1/")
-      .then((data) => data.json())
-      .then((items) => {
-        setList(items);
-      });
-    console.log(list);
-  }, []);
   const handleClick = (id: any) => {
     props.addToCart(id);
   };
@@ -29,7 +21,7 @@ const Home = (props: any) => {
       <Box>
         <Box key={item.id}>
           <Box>
-            <Image src={imageTest} alt={item.title} boxSize="250px" />
+            <Image src={item.img} alt={item.title} boxSize="250px" />
           </Box>
           <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
             Title: {item.title}
@@ -60,7 +52,6 @@ const Home = (props: any) => {
         justifyContent="space-between"
         padding={2}
         flexWrap="wrap"
-        border="1px pink solid"
       >
         {itemList}
       </Box>
