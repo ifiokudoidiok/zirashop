@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { Icon } from "@chakra-ui/react";
+import { MdAddShoppingCart, MdRemoveShoppingCart } from "react-icons/md";
 import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
 import {
   removeItem,
@@ -25,65 +28,66 @@ const Cart = (props: any) => {
   let addedItems: any = props.items.length ? (
     props.items.map((item: any) => {
       return (
-        <li className="collection-item avatar" key={item.id}>
-          <div className="item-img">
-            <img src={item.img} alt={item.img} className="" />
-          </div>
+        <Box key={item.id}>
+          <Box>
+            <Image src={item.img} alt={item.title} boxSize="250px" />
+          </Box>
 
-          <div className="item-desc">
-            <span className="title">{item.title}</span>
-            <p>{item.desc}</p>
-            <p>
+          <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+            Title: {item.title}
+          </Box>
+          <Box display="flex" justifyContent="space-around">
+            <Link to="/cart">
+              <Icon
+                onClick={() => {
+                  handleAddQuantity(item.id);
+                }}
+                as={MdAddShoppingCart}
+                cursor="pointer"
+              />
+            </Link>
+            <Link to="/cart">
+              <Icon
+                onClick={() => {
+                  handleSubtractQuantity(item.id);
+                }}
+                as={MdRemoveShoppingCart}
+                cursor="pointer"
+              />
+            </Link>
+          </Box>
+            <Text>
               <b>Price: {item.price}$</b>
-            </p>
-            <p>
+            </Text>
+            <Text>
               <b>Quantity: {item.quantity}</b>
-            </p>
-            <div className="add-remove">
-              <Link to="/cart">
-                <i
-                  className="material-icons"
-                  onClick={() => {
-                    handleAddQuantity(item.id);
-                  }}
-                >
-                  arrow_drop_up
-                </i>
-              </Link>
-              <Link to="/cart">
-                <i
-                  className="material-icons"
-                  onClick={() => {
-                    handleSubtractQuantity(item.id);
-                  }}
-                >
-                  arrow_drop_down
-                </i>
-              </Link>
-            </div>
-            <button
-              className="waves-effect waves-light btn pink remove"
-              onClick={() => {
-                handleRemove(item.id);
-              }}
-            >
-              Remove
-            </button>
-          </div>
-        </li>
+            </Text>
+          <Button
+            onClick={() => {
+              handleRemove(item.id);
+            }}
+          >
+            Remove
+          </Button>
+        </Box>
       );
     })
   ) : (
     <p>Nothing.</p>
   );
   return (
-    <div className="container">
-      <div className="cart">
-        <h5>You have ordered:</h5>
-        <ul className="collection">{addedItems}</ul>
-      </div>
+      <Box>
+        <Text>You have ordered:</Text>
+        <Box
+        display="flex"
+        justifyContent="space-between"
+        padding={2}
+        flexWrap="wrap"
+      >
+        {addedItems}
+      </Box>
       {/* <Recipe /> */}
-    </div>
+      </Box>
   );
 };
 
