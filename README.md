@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+# Quick start for getting this app up and running on your local machine:
+
+- `yarn` to install dependencies
+- `yarn start` to get the project up and running
+-  Navigate to `localhost:3000` on your browser to the app live
+
+
+# Getting Started with this Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
