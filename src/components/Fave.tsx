@@ -10,9 +10,10 @@ const Fave = (props: any) => {
     const handleRemove = (id: any) => {
       props.removeFave(id);
     };
-
-  let faveItems: any = props.items.length
-    ? props.items.map((item: any) => {
+ 
+  let showFaveItems: any = props.items.faveItems.length
+    ? props.items.faveItems.map((item: any) => {
+      console.log(props.items, 'Props.item')
         return (
           <Box>
             <Box key={item.id}>
@@ -25,14 +26,14 @@ const Fave = (props: any) => {
               </Box>
               <Box display="flex" justifyContent="space-around"></Box>
             </Box>
-             <Icon onClick={() => {
+             <Icon cursor='pointer' onClick={() => {
                 handleRemove(item.id);
               }}  as={MdFavorite} /> 
           </Box>
         );
       })
     : (<Text>Nothing in Fave</Text>);
-  return <>{faveItems}</>;
+  return <>{showFaveItems}</>;
 };
 
 const mapStateToProps = (state: any) => {
