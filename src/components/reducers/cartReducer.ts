@@ -10,7 +10,8 @@ const initState = {
         {id:5,title:'Cropped-sho', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:160,img: 'Item5'},
         {id:6,title:'Blues', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:90,img: 'Item6'}
     ],
-    addedItems:[null],
+    
+    addedItems: [] as Array<any>[],
     total: 0
 
 }
