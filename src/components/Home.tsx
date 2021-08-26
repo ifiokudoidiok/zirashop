@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "./actions/cartActions";
 import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
-import { GrFavorite, GrCart } from "react-icons/gr";
+import { GrFavorite } from "react-icons/gr";
 import { MdFavorite, MdAddShoppingCart } from "react-icons/md";
-
-import imageTest from "./../images/image.jpg";
 
 const Home = (props: any) => {
   const [list, setList] = useState([]);
