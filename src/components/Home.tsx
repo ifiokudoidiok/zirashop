@@ -1,6 +1,6 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "./actions/cartActions";
+import { addToCart, addFave, removeFave } from "./actions/cartActions";
 import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { GrFavorite } from "react-icons/gr";
@@ -13,6 +13,15 @@ const Home = (props: any) => {
   const handleClick = (id: any) => {
     props.addToCart(id);
   };
+ 
+  const addToFave = (id: any) => {
+    props.addFave(id);
+  };
+
+  const removeFromFave = (id: any) => {
+    props.removeFave(id);
+  };
+
 
   let itemList = props.items.map((item: any) => {
     return (
@@ -25,17 +34,31 @@ const Home = (props: any) => {
             Title: {item.title}
           </Box>
           <Box display="flex" justifyContent="space-around">
-            <Box
-              key={item.id}
-              cursor="pointer"
-              isFave={isFave}
-              onClick={() => setIsFave(!isFave)}
-            >
-              {isFave ? <Icon as={MdFavorite} /> : <Icon as={GrFavorite} />}
-            </Box>
-            <Icon onClick={() => {
+            {!item.fave ? (
+              <Box
+                key={item.id}
+                cursor="pointer"
+                onClick={() => addToFave(item.id)}
+              >
+                <Icon as={GrFavorite} />
+              </Box>
+            ) : (
+              <Box
+                key={item.id}
+                cursor="pointer"
+                onClick={() => removeFromFave(item.id)}
+              >
+                <Icon as={MdFavorite} />
+              </Box>
+            )}
+
+            <Icon
+              onClick={() => {
                 handleClick(item.id);
-              }} as={MdAddShoppingCart} cursor="pointer" />
+              }}
+              as={MdAddShoppingCart}
+              cursor="pointer"
+            />
           </Box>
           <br />
         </Box>
@@ -67,6 +90,12 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     addToCart: (id: any) => {
       dispatch(addToCart(id));
+    },
+    addFave: (id: any) => {
+      dispatch(addFave(id));
+    },
+    removeFave: (id: any) => {
+      dispatch(removeFave(id));
     },
   };
 };
