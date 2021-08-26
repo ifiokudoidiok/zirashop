@@ -29,14 +29,14 @@ export const addQuantity=(id: any)=>{
         id
     }
 }
-
+//add fave action
 export const addFave=(id: any)=>{
     return{
         type: ADD_TO_FAVE,
         id
     }
 }
-
+//remove fave action
 export const removeFave=(id: any)=>{
     return{
         type: REMOVE_FAVE,
