@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Flex, Stack } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
+import {  GrCart } from "react-icons/gr";
 
 const NavBar = ({ to = "/" }) => {
  
@@ -20,7 +22,7 @@ const NavBar = ({ to = "/" }) => {
             </Link>
             <Link to="/favorite">MY FAVORITE</Link>
             <Link to="#">Search bar placeholder </Link>
-            <Link to="/cart">Cart ICON </Link>
+            <Link to="/cart" > <Icon as={GrCart} cursor='pointer'/></Link>
           
         </Flex>
       );
