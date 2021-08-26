@@ -11,11 +11,11 @@ import boots from "./../../images/boots.jpg";
 const initState = {
     items: [
         {id:1,title:'Brown Brogues', desc: "A pair of Brown Brogues.", price:110,img:brogues, fave: false},
-        {id:2,title:'Adidas', desc: "A pair of Adidas sneakers", price:80,img: sneakers, fave: true},
+        {id:2,title:'Adidas', desc: "A pair of Adidas sneakers", price:80,img: sneakers, fave: false},
         {id:3,title:'Trainers', desc: "A pair of Blue Trainers.",price:120,img: trainers, fave: false},
         {id:4,title:'Red Heels', desc: "A pair of Red heels", price:260,img:heels, fave: false},
-        {id:5,title:'Cropped-sho', desc: "A pair of Nike Airforce", price:160,img: nike, fave: true},
-        {id:6,title:'Boots', desc: "A pair of Black Boots",price:90,img: boots, fave: true}
+        {id:5,title:'Cropped-sho', desc: "A pair of Nike Airforce", price:160,img: nike, fave: false},
+        {id:6,title:'Boots', desc: "A pair of Black Boots",price:90,img: boots, fave: false}
     ], 
 
     addedItems: [] as Array<any>[],
@@ -67,12 +67,13 @@ if(action.type === REMOVE_ITEM){
 if(action.type === ADD_TO_FAVE) {
     let faveItem: any = state.items.find((item: any) => item.id ===action.id)
     let existed_item: any = state.faveItems.find((item: any)=> action.id === item.id)
-    if(existed_item.fave){
+    if(existed_item){
         return{
             ...state, 
         }
     }
     else {
+        faveItem.fave = true
         return{
             ...state, 
             faveItems: [...state.faveItems, faveItem]
@@ -81,7 +82,6 @@ if(action.type === ADD_TO_FAVE) {
 }
 
 if(action.type === REMOVE_FAVE) {
-    // let faveItemToRemove = state.faveItems.find(item => item.id ===action.id)
     let new_items: any = state.faveItems.filter((item: any)=> action.id !== item.id)
     return{
         ...state,
