@@ -1,4 +1,5 @@
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING} from './action-types/cart-actions'
+import { ADD_TO_FAVE, REMOVE_FAVE} from './action-types/fave-actions'
 
 //add cart action
 export const addToCart= (id: any)=>{
@@ -25,6 +26,20 @@ export const subtractQuantity=(id: any)=>{
 export const addQuantity=(id: any)=>{
     return{
         type: ADD_QUANTITY,
+        id
+    }
+}
+
+export const addFave=(id: any)=>{
+    return{
+        type: ADD_TO_FAVE,
+        id
+    }
+}
+
+export const removeFave=(id: any)=>{
+    return{
+        type: REMOVE_FAVE,
         id
     }
 }
