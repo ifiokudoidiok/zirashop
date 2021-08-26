@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "./actions/cartActions";
 import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
+import { GrFavorite, GrCart } from "react-icons/gr";
+import { MdFavorite, MdAddShoppingCart } from "react-icons/md";
 
 import imageTest from "./../images/image.jpg";
 
 const Home = (props: any) => {
   const [list, setList] = useState([]);
- 
+  const [isFave, setIsFave] = useState(false);
+
   useEffect(() => {
     fetch("https://www.heimkaup.is/api/v1/")
       .then((data) => data.json())
@@ -22,47 +26,44 @@ const Home = (props: any) => {
 
   let itemList = props.items.map((item: any) => {
     return (
-      <Stack wrap='wrap'>
-        <Box 
-        display='flex'  p={2} wrap='wrap' flexDirection='column'alignItems='center'
-          key={item.id}
-        >
+      <Box>
+        <Box key={item.id}>
           <Box>
-            <Image src={imageTest} alt={item.title} boxSize="150px" />
+            <Image src={imageTest} alt={item.title} boxSize="250px" />
           </Box>
-          <Box
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
-          >
+          <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
             Title: {item.title}
           </Box>
-          <Stack spacing={10} direction="row" 
-          align="center"
-          >
-            <Button colorScheme="teal" size="xs">
-              Fave
-            </Button>
-            <Button
-              colorScheme="teal"
-              size="xs"
-              onClick={() => {
-                handleClick(item.id);
-              }}
+          <Box display="flex" justifyContent="space-around">
+            <Box
+              key={item.id}
+              cursor="pointer"
+              isFave={isFave}
+              onClick={() => setIsFave(!isFave)}
             >
-              Add to cart
-            </Button>
-          </Stack>
+              {isFave ? <Icon as={MdFavorite} /> : <Icon as={GrFavorite} />}
+            </Box>
+            <Icon onClick={() => {
+                handleClick(item.id);
+              }} as={MdAddShoppingCart} cursor="pointer" />
+          </Box>
           <br />
         </Box>
-      </Stack>
+      </Box>
     );
   });
   return (
     <Box>
       <Text>Items</Text>
-      <Box>{itemList}</Box>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        padding={2}
+        flexWrap="wrap"
+        border="1px pink solid"
+      >
+        {itemList}
+      </Box>
     </Box>
   );
 };
