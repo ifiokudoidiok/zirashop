@@ -1,14 +1,20 @@
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/action-types/cart-actions'
-import imageTest from "./../../images/image.jpg";
+import brogues from "./../../images/brogues.jpg";
+import trainers from "./../../images/trainers.jpg";
+import sneakers from "./../../images/sneakers.jpg";
+import heels from "./../../images/heels.jpg";
+import nike from "./../../images/nike.jpg";
+import boots from "./../../images/boots.jpg";
+
 
 const initState = {
     items: [
-        {id:1,title:'Winter body', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:110,img:imageTest},
-        {id:2,title:'Adidas', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:80,img: imageTest},
-        {id:3,title:'Vans', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:120,img: imageTest},
-        {id:4,title:'White', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:260,img:imageTest},
-        {id:5,title:'Cropped-sho', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.", price:160,img: imageTest},
-        {id:6,title:'Blues', desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, ex.",price:90,img: imageTest}
+        {id:1,title:'Brown Brogues', desc: "A pair of Brown Brogues.", price:110,img:brogues},
+        {id:2,title:'Adidas', desc: "A pair of Adidas sneakers", price:80,img: sneakers},
+        {id:3,title:'Trainers', desc: "A pair of Blue Trainers.",price:120,img: trainers},
+        {id:4,title:'Red Heels', desc: "A pair of Red heels", price:260,img:heels},
+        {id:5,title:'Cropped-sho', desc: "A pair of Nike Airforce", price:160,img: nike},
+        {id:6,title:'Boots', desc: "A pair of Black Boots",price:90,img: boots}
     ],
 
     addedItems: [] as Array<any>[],
