@@ -82,7 +82,9 @@ if(action.type === ADD_TO_FAVE) {
 }
 
 if(action.type === REMOVE_FAVE) {
+    let faveItem: any = state.items.find((item: any) => item.id ===action.id)
     let new_items: any = state.faveItems.filter((item: any)=> action.id !== item.id)
+    faveItem.fave = false
     return{
         ...state,
         faveItems: new_items
