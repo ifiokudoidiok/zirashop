@@ -1,0 +1,22 @@
+.navbar {
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* .navbar:active{
+  border-bottom: 1px solid red;
+} */
+
+.searchInput {
+  width: 200px;
+  height: 26px;
+  box-sizing: border-box;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: none;
+  border: 1px solid #6a6a7f;
+  border-radius: 3px;
+  color: black;
+}

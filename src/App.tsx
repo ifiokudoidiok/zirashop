@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
+import "./components/NavBar.css";
 import "./App.css";
 import Fave from "./components/Fave";
 
@@ -17,7 +18,6 @@ function App(props: any) {
   };
 
   React.useEffect(() => {
-    console.log(props, "Props");
     const results: any = props.items.filter((item: any) =>
       item.title.toLowerCase().includes(searchTerm)
     );
@@ -29,6 +29,7 @@ function App(props: any) {
     <BrowserRouter>
       <div className="App">
         <NavBar
+          className="navbar"
           component={NavBar}
           handleChange={handleChange}
           searchTerm={searchTerm}
@@ -37,8 +38,10 @@ function App(props: any) {
           <Route exact path="/">
             <Home searchResults={searchResults} searchTerm={searchTerm} />
           </Route>
+          <Route exact path="/favorite">
+            <Fave searchResults={searchResults} searchTerm={searchTerm} />
+          </Route>
           <Route path="/cart" component={Cart} />
-          <Route path="/favorite" component={Fave} />
         </Switch>
       </div>
     </BrowserRouter>

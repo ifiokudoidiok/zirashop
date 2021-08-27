@@ -21,9 +21,15 @@ const Home = (props: any) => {
   let itemList = props.items.map((item: any) => {
     return (
       <Box>
-        <Box key={item.id}>
+        <Box key={item.id} margin="20px">
           <Box>
-            <Image src={item.img} alt={item.title} boxSize="250px" />
+            <Image
+              src={item.img}
+              alt={item.title}
+              boxSize="250px"
+              w="235px"
+              h="200px"
+            />
           </Box>
           <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
             Title: {item.title}
@@ -63,56 +69,57 @@ const Home = (props: any) => {
 
   let searchList = props.searchResults.map((item: any) => {
     return (
-      <Box>
-        <Box key={item.id}>
-          <Box>
-            <Image src={item.img} alt={item.title} boxSize="250px" />
-          </Box>
-          <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
-            Title: {item.title}
-          </Box>
-          <Box display="flex" justifyContent="space-around">
-            {!item.fave ? (
-              <Box
-                key={item.id}
-                cursor="pointer"
-                onClick={() => addToFave(item.id)}
-              >
-                <Icon as={GrFavorite} />
-              </Box>
-            ) : (
-              <Box
-                key={item.id}
-                cursor="pointer"
-                onClick={() => removeFromFave(item.id)}
-              >
-                <Icon as={MdFavorite} />
-              </Box>
-            )}
-
-            <Icon
-              onClick={() => {
-                handleClick(item.id);
-              }}
-              as={MdAddShoppingCart}
-              cursor="pointer"
-            />
-          </Box>
-          <br />
+      <Box key={item.id} margin="20px">
+        <Box>
+          <Image
+            src={item.img}
+            alt={item.title}
+            boxSize="250px"
+            w="235px"
+            h="200px"
+          />
         </Box>
+        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+          Title: {item.title}
+        </Box>
+        <Box display="flex" justifyContent="space-around">
+          {!item.fave ? (
+            <Box
+              key={item.id}
+              cursor="pointer"
+              onClick={() => addToFave(item.id)}
+            >
+              <Icon as={GrFavorite} />
+            </Box>
+          ) : (
+            <Box
+              key={item.id}
+              cursor="pointer"
+              onClick={() => removeFromFave(item.id)}
+            >
+              <Icon as={MdFavorite} />
+            </Box>
+          )}
+
+          <Icon
+            onClick={() => {
+              handleClick(item.id);
+            }}
+            as={MdAddShoppingCart}
+            cursor="pointer"
+          />
+        </Box>
+        <br />
       </Box>
     );
   });
 
   return (
     <Box>
-      <Text>Items</Text>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        padding={2}
-        flexWrap="wrap"
-      >
+      <Text font-size="16px" font-weight="600">
+        ITEMS
+      </Text>
+      <Box display="flex" bg="#fafafa" flexWrap="wrap">
         {props.searchTerm ? searchList : itemList}
       </Box>
     </Box>
