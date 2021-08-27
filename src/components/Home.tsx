@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { addToCart, addFave, removeFave } from "./actions/cartActions";
-import { Box, Image, Text, Button, Stack, Input } from "@chakra-ui/react";
+import { Box, Image, Text} from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { GrFavorite } from "react-icons/gr";
 import { MdFavorite, MdAddShoppingCart } from "react-icons/md";
 
 const Home = (props: any) => {
-  const [list, setList] = useState([]);
-  const [isFave, setIsFave] = useState(false);
-
   const handleClick = (id: any) => {
     props.addToCart(id);
   };
@@ -20,26 +17,6 @@ const Home = (props: any) => {
   const removeFromFave = (id: any) => {
     props.removeFave(id);
   };
-
-
-  // Search
-
-const [searchTerm, setSearchTerm] = React.useState("");
- const [searchResults, setSearchResults] = React.useState([] as Array<any>[]);
-  const handleChange = (event: any) => {
-    setSearchTerm(event.target.value);
-  };
-
-  React.useEffect(() => {
-    console.log(props, 'Props')
-    const results: any = props.items.filter((item: any)=>
-      item.title.toLowerCase().includes(searchTerm)
-    );
-    
-    setSearchResults(results);
-    console.log(searchTerm, searchResults);
-  }, [searchTerm]);
-
 
   let itemList = props.items.map((item: any) => {
     return (
@@ -84,9 +61,9 @@ const [searchTerm, setSearchTerm] = React.useState("");
     );
   });
 
-  let searchList = searchResults.map((item: any) => {
+  let searchList = props.searchResults.map((item: any) => {
     return (
-      <Box>   
+      <Box>
         <Box key={item.id}>
           <Box>
             <Image src={item.img} alt={item.title} boxSize="250px" />
@@ -127,14 +104,8 @@ const [searchTerm, setSearchTerm] = React.useState("");
     );
   });
 
-
   return (
     <Box>
-      <Input
-        borderRadius={2}
-        value={searchTerm}
-        onChange={handleChange}
-      ></Input>
       <Text>Items</Text>
       <Box
         display="flex"
@@ -142,7 +113,7 @@ const [searchTerm, setSearchTerm] = React.useState("");
         padding={2}
         flexWrap="wrap"
       >
-        {searchTerm ? searchList : itemList}
+        {props.searchTerm ? searchList : itemList}
       </Box>
     </Box>
   );
@@ -151,8 +122,6 @@ const [searchTerm, setSearchTerm] = React.useState("");
 const mapStateToProps = (state: any) => {
   return {
     items: state.items,
-    // searchTerm: state.searchTerm,
-    // searchResult: state.searchResult
   };
 };
 
