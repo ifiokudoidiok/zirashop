@@ -30,7 +30,8 @@ const Cart = (props: any) => {
       return (
         <Box key={item.id}>
           <Box>
-            <Image src={item.img} alt={item.title} boxSize="250px" />
+            <Image src={item.img} alt={item.title} boxSize="250px" w="235px"
+              h="200px"/>
           </Box>
 
           <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
@@ -77,11 +78,9 @@ const Cart = (props: any) => {
   );
   return (
       <Box>
-        <Text>You have ordered:</Text>
+        <Text font-size="16px" font-weight="600">You have ordered:</Text>
         <Box
         display="flex"
-        justifyContent="space-between"
-        padding={2}
         flexWrap="wrap"
       >
         {addedItems}
