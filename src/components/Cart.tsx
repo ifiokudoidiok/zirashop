@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 import { Icon } from "@chakra-ui/react";
 import { MdAddShoppingCart, MdRemoveShoppingCart } from "react-icons/md";
-import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
+import { Box, Image, Text, Button} from "@chakra-ui/react";
 import {
   removeItem,
   addQuantity,
   subtractQuantity,
 } from "./actions/cartActions";
-// import Recipe from "./Recipe";
+import Receipt from "./Receipt";
 const Cart = (props: any) => {
   //to remove the item completely
   const handleRemove = (id: any) => {
@@ -62,7 +62,7 @@ const Cart = (props: any) => {
             <Text>
               <b>Quantity: {item.quantity}</b>
             </Text>
-          <Button
+          <Button cursor='pointer'
             onClick={() => {
               handleRemove(item.id);
             }}
@@ -86,7 +86,7 @@ const Cart = (props: any) => {
       >
         {addedItems}
       </Box>
-      {/* <Recipe /> */}
+      <Receipt />
       </Box>
   );
 };
