@@ -1,39 +1,84 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Box, Image, Text} from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import { removeFave } from "./actions/cartActions";
 
 import { Icon } from "@chakra-ui/react";
 import { MdFavorite } from "react-icons/md";
 
 const Fave = (props: any) => {
-    const handleRemove = (id: any) => {
-      props.removeFave(id);
-    };
- 
-  let showFaveItems: any = props.items.faveItems.length
-    ? props.items.faveItems.map((item: any) => {
-      console.log(props.items, 'Props.item')
-        return (
-          <Box>
-            <Box key={item.id}>
-              <Box>
-                <Image src={item.img} alt={item.title} boxSize="250px" />
-              </Box>
+  const handleRemove = (id: any) => {
+    props.removeFave(id);
+  };
 
-              <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
-                Title: {item.title}
-              </Box>
-              <Box display="flex" justifyContent="space-around"></Box>
+  let showFaveItems: any = props.items.faveItems.length ? (
+    props.items.faveItems.map((item: any) => {
+      console.log(props, "Props");
+      return (
+        <Box>
+          <Box key={item.id}>
+            <Box>
+              <Image src={item.img} alt={item.title} boxSize="250px" />
             </Box>
-             <Icon cursor='pointer' onClick={() => {
-                handleRemove(item.id);
-              }}  as={MdFavorite} /> 
+
+            <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+              Title: {item.title}
+            </Box>
+            <Box display="flex" justifyContent="space-around"></Box>
           </Box>
-        );
-      })
-    : (<Text>Nothing in Fave</Text>);
-  return <>{showFaveItems}</>;
+          <Icon
+            cursor="pointer"
+            onClick={() => {
+              handleRemove(item.id);
+            }}
+            as={MdFavorite}
+          />
+        </Box>
+      );
+    })
+  ) : (
+    <Text>Nothing in Fave</Text>
+  );
+
+  let searchList = props.searchResults.map((item: any) => {
+    return (
+      <Box key={item.id} margin="20px">
+        <Box>
+          <Image
+            src={item.img}
+            alt={item.title}
+            boxSize="250px"
+            w="235px"
+            h="200px"
+          />
+        </Box>
+        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+          Title: {item.title}
+        </Box>
+        <Box display="flex" justifyContent="space-around">
+          <Box
+            key={item.id}
+            cursor="pointer"
+            onClick={() => handleRemove(item.id)}
+          >
+            <Icon as={MdFavorite} />
+          </Box>
+        </Box>
+        <br />
+      </Box>
+    );
+  });
+
+  return (
+    <Box>
+      <Text font-size="16px" font-weight="600">
+        FAVE ITEMS
+      </Text>
+      <Box display="flex" bg="#fafafa" flexWrap="wrap">
+        {props.searchTerm ? searchList : showFaveItems}
+      </Box>
+    </Box>
+  );
 };
 
 const mapStateToProps = (state: any) => {
