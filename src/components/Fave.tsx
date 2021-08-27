@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Box, Image, Text, Button, Stack } from "@chakra-ui/react";
+import { Box, Image, Text} from "@chakra-ui/react";
 import { removeFave } from "./actions/cartActions";
 
 import { Icon } from "@chakra-ui/react";
