@@ -49,15 +49,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    addShipping: () => {
-      dispatch({ type: "ADD_SHIPPING" });
-    },
-    substractShipping: () => {
-      dispatch({ type: "SUB_SHIPPING" });
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Receipt);
+export default connect(mapStateToProps)(Receipt);
