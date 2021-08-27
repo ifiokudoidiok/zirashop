@@ -21,7 +21,7 @@ const Receipt = (props: any): any => {
 
     temporaryExportEl.href = "data:attachment/text," + JSON.stringify(output);
     temporaryExportEl.target = "_blank";
-    temporaryExportEl.download = `export-${Date.now()}.json`;
+    temporaryExportEl.download = `export-checkout-${Date.now()}.json`;
     temporaryExportEl.click();
   };
 
