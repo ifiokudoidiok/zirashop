@@ -1,13 +1,10 @@
 .navbar {
   text-decoration: none;
   color: black;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
 }
 
-/* .navbar:active{
-  border-bottom: 1px solid red;
-} */
 
 .searchInput {
   width: 200px;

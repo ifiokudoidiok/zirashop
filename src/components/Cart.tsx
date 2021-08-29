@@ -28,16 +28,16 @@ const Cart = (props: any) => {
   let addedItems: any = props.items.length ? (
     props.items.map((item: any) => {
       return (
-        <Box key={item.id}>
+        <Box className="cardContainer" key={item.id}>
           <Box>
             <Image src={item.img} alt={item.title} boxSize="250px" w="235px"
               h="200px"/>
           </Box>
 
-          <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+          <Box as="p" className="titleText" lineHeight="tight">
             Title: {item.title}
           </Box>
-          <Box display="flex" justifyContent="space-around">
+          <Box display="flex" justifyContent="space-between" paddingLeft='5px' paddingRight='5px'>
             <Link to="/cart">
               <Icon
                 onClick={() => {
@@ -57,13 +57,15 @@ const Cart = (props: any) => {
               />
             </Link>
           </Box>
+          <Box className='cartText'>
             <Text>
-              <b>Price: {item.price}$</b>
+              Price: {item.price}$
             </Text>
             <Text>
-              <b>Quantity: {item.quantity}</b>
+              Quantity: {item.quantity}
             </Text>
-          <Button cursor='pointer'
+          </Box>
+          <Button className='cartRemoveBtn'cursor='pointer'
             onClick={() => {
               handleRemove(item.id);
             }}
@@ -74,11 +76,11 @@ const Cart = (props: any) => {
       );
     })
   ) : (
-    <p>Nothing.</p>
+    <p> Cart is Empty 😔</p>
   );
   return (
       <Box>
-        <Text font-size="16px" font-weight="600">You have ordered:</Text>
+        <Text fontSize="15px" fontWeight="600">SHOPPING CART</Text>
         <Box
         display="flex"
         flexWrap="wrap"

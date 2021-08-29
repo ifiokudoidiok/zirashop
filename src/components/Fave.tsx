@@ -42,7 +42,7 @@ const Fave = (props: any) => {
 
   let searchList = props.searchResults.map((item: any) => {
     return (
-      <Box key={item.id} margin="20px">
+      <Box key={item.id} className="cardContainer">
         <Box>
           <Image
             src={item.img}
@@ -52,10 +52,10 @@ const Fave = (props: any) => {
             h="200px"
           />
         </Box>
-        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+        <Box as="p" className="titleText" lineHeight="tight">
           Title: {item.title}
         </Box>
-        <Box display="flex" justifyContent="space-around">
+        <Box display="flex" justifyContent="space-between" paddingLeft='5px' paddingRight='5px'>
           <Box
             key={item.id}
             cursor="pointer"

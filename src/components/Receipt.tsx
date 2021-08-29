@@ -27,10 +27,11 @@ const Receipt = (props: any): any => {
 
   return (
     <Box>
-      <Text>
-        <b>Total: {props.total}</b>
+      <Text className='totalText'>
+        Total: {props.total}
       </Text>
       <Button
+      className='checkoutBtn'
         cursor="pointer"
         onClick={() => {
           downloadJSON();

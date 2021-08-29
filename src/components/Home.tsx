@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addToCart, addFave, removeFave } from "./actions/cartActions";
-import { Box, Image, Text} from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { GrFavorite } from "react-icons/gr";
 import { MdFavorite, MdAddShoppingCart } from "react-icons/md";
@@ -21,7 +21,7 @@ const Home = (props: any) => {
   let itemList = props.items.map((item: any) => {
     return (
       <Box>
-        <Box key={item.id} margin="20px">
+        <Box className="cardContainer" key={item.id}>
           <Box>
             <Image
               src={item.img}
@@ -31,10 +31,15 @@ const Home = (props: any) => {
               h="200px"
             />
           </Box>
-          <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+          <Box as="p" className="titleText" lineHeight="tight">
             Title: {item.title}
           </Box>
-          <Box display="flex" justifyContent="space-around">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            paddingLeft="5px"
+            paddingRight="5px"
+          >
             {!item.fave ? (
               <Box
                 key={item.id}
