@@ -18,6 +18,13 @@ const Home = (props: any) => {
     props.removeFave(id);
   };
 
+  React.useEffect(() => {
+    const results: any = props.items.filter((item: any) =>
+      item.title.toLowerCase().includes(props.searchTerm)
+    );
+    props.setSearchResults(results);
+  }, [props.searchTerm]);
+
   let itemList = props.items.map((item: any) => {
     return (
       <Box>

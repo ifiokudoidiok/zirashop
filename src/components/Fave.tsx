@@ -11,6 +11,13 @@ const Fave = (props: any) => {
     props.removeFave(id);
   };
 
+  React.useEffect(() => {
+    const results: any = props.items.faveItems.filter((item: any) =>
+      item.title.toLowerCase().includes(props.searchTerm)
+    );
+    props.setSearchResults(results);
+  }, [props.searchTerm]);
+
   let showFaveItems: any = props.items.faveItems.length ? (
     props.items.faveItems.map((item: any) => {
       console.log(props, "Props");

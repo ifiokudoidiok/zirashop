@@ -17,13 +17,6 @@ function App(props: any) {
     setSearchTerm(event.target.value);
   };
 
-  React.useEffect(() => {
-    const results: any = props.items.filter((item: any) =>
-      item.title.toLowerCase().includes(searchTerm)
-    );
-
-    setSearchResults(results);
-  }, [searchTerm]);
 
   return (
     <BrowserRouter>
@@ -36,10 +29,10 @@ function App(props: any) {
         />
         <Switch>
           <Route exact path="/">
-            <Home searchResults={searchResults} searchTerm={searchTerm} />
+            <Home searchResults={searchResults} searchTerm={searchTerm} setSearchResults={setSearchResults}/>
           </Route>
           <Route exact path="/favorite">
-            <Fave searchResults={searchResults} searchTerm={searchTerm} />
+            <Fave searchResults={searchResults} searchTerm={searchTerm} setSearchResults={setSearchResults}/>
           </Route>
           <Route path="/cart" component={Cart} />
         </Switch>
